@@ -46,15 +46,10 @@ BRIDGE=${BRIDGE:="vmbr1"}
 CORES=${CORES:=1}
 IMAGE=${IMAGE?"Missing image"}
 MEMORY=${MEMORY:=2048}
-SSH_KEYFILE=${SSH_KEYFILE:="/root/id_rsa.pub"}
+SSH_KEYFILE=${SSH_KEYFILE:="/root/templates/id_rsa.pub"}
 STORAGE=${STORAGE:="local-lvm"}
 USERNAME=${USERNAME:="sysadm"}
 TEMPLATE_ID=${TEMPLATE_ID?"Missing template id"}
 TEMPLATE_NAME=${TEMPLATE_NAME?"Missing template name"}
-
-echo "TEMPLATE_ID=${TEMPLATE_ID}"
-echo "SSH_KEYFILE=${SSH_KEYFILE}"
-echo "STORAGE=${STORAGE}"
-echo "USERNAME=${USERNAME}"
 
 create_template $TEMPLATE_ID $TEMPLATE_NAME
