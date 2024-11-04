@@ -6,21 +6,20 @@ function create_template() {
 
     echo "Creating template $template_name ($template_id)"
 
-    qm create $template_id --name $template_name
+    qm create $template_id --name $template_name --ostype l26
     qm importdisk $template_id ${IMAGE} ${STORAGE}
 
     qm set $template_id --net0 virtio,bridge=${BRIDGE}
     qm set $template_id --memory ${MEMORY} --cores ${CORES}
 
-
     qm set $template_id --scsihw virtio-scsi-pci --scsi0 ${STORAGE}:vm-${template_id}-disk-0
     qm set $template_id --boot c --bootdisk scsi0
 
-    qm set $template_id --agent enabled=1,fstrim_cloned_disks=1
+    qm set $template_id --agent enabled=1
     
     qm set $template_id --ide2 ${STORAGE}:cloudinit
 
-    qm set $template_id --ipconfig0 "ip6=none,ip=dhcp"
+    qm set $template_id --ipconfig0 "ip=dhcp"
 
     qm set $template_id --sshkeys ${SSH_KEYFILE}
     qm set $template_id --ciuser ${USERNAME}
